@@ -5,7 +5,8 @@ export interface ManagerViewDTO {
     lastName: string,
     nationality: string,
     birthday: string,
-    teamId: string
+    teamId: string,
+    teamName: string
 
 }
 

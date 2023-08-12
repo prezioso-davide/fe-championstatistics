@@ -3,8 +3,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingModule } from './landing/landing.module';
-import { LayoutService } from './layout/service/app.layout.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -17,7 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        LayoutService
+        MessageService, ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

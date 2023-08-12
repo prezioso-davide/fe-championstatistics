@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="surface-0 flex justify-content-center">
     <div id="home" class="landing-wrapper overflow-hidden">
         <div id="topbar"
@@ -74,9 +75,9 @@
                         </ng-template>
                         <ng-container>
                             <p-table [value]="stadiums" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                                [loading]="loading" 
+                                [loading]="loading" responsiveLayout="stack"
                                 currentPageReportTemplate="Da {first} a {last} di {totalRecords} record"
-                                [rowsPerPageOptions]="[5, 20, 20]">
+                                [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
                                         <p-button icon="pi pi-plus"></p-button>
@@ -87,16 +88,16 @@
                                         <th style="width:25%">Nome</th>
                                         <th style="width:25%">Città</th>
                                         <th style="width:25%">Paese</th>
-                                        <th style="width:25%">Capacità</th>
+                                        <th style="width:25%">Capienza</th>
                                         <th></th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-stadium>
                                     <tr>
-                                        <td>{{ stadium.stadiumName }}</td>
-                                        <td>{{ stadium.city }}</td>
-                                        <td>{{ stadium.country }}</td>
-                                        <td>{{ stadium.capacity }}</td>
+                                        <td><span class="p-column-title">Nome</span>{{ stadium.stadiumName }}</td>
+                                        <td><span class="p-column-title">Città</span>{{ stadium.city }}</td>
+                                        <td><span class="p-column-title">Paese</span>{{ stadium.country }}</td>
+                                        <td><span class="p-column-title">Capienza</span>{{ stadium.capacity }}</td>
                                         <td class="flex justify-content-end">
                                             <button  pButton type="button" icon="pi pi-pencil"></button>
                                             &nbsp;
@@ -119,7 +120,7 @@
                         </ng-template>
                         <ng-container>
                             <p-table [value]="teams" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                                [loading]="loading"
+                                [loading]="loading" responsiveLayout="stack"
                                 currentPageReportTemplate="Da {first} a {last} di {totalRecords} record"
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
@@ -137,13 +138,234 @@
                                 </ng-template>
                                 <ng-template pTemplate="body" let-team>
                                     <tr>
-                                        <td>{{ team.teamName }}</td>
-                                        <td>{{ team.country }}</td>
-                                        <td>{{ team.stadiumName }}</td>
+                                        <td><span class="p-column-title">Nome</span>{{ team.teamName }}</td>
+                                        <td><span class="p-column-title">Paese</span>{{ team.country }}</td>
+                                        <td><span class="p-column-title">Stadio</span>{{ team.stadiumName }}</td>
                                         <td class="flex justify-content-end">
                                             <button  pButton type="button" icon="pi pi-pencil"></button>
                                             &nbsp;
                                             <button  pButton type="button" icon="pi pi-trash"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </ng-container>
+                    </p-fieldset>
+                </div>
+
+                <div class="col-12 md:col-12 lg:col-6">
+                    <p-fieldset>
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center text-primary">
+                                <span class="pi pi-user mr-2"></span>
+                                <span class="font-bold text-lg">Giocatori</span>
+                            </div>
+                        </ng-template>
+                        <ng-container>
+                            <p-table [value]="players" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                                [loading]="loading" dataKey="id" responsiveLayout="stack"
+                                currentPageReportTemplate="Da {first} a {last} di {totalRecords} record"
+                                [rowsPerPageOptions]="[5, 10, 20]">
+                                <ng-template pTemplate="caption">
+                                    <div class="flex align-items-center justify-content-end">
+                                        <p-button icon="pi pi-plus"></p-button>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th></th>
+                                        <th style="width:25%">Nome</th>
+                                        <th style="width:25%">Cognome</th>
+                                        <th style="width:25%">Nazionalità</th>
+                                        <th style="width:25%">Data di nascita</th>
+                                        <th style="width:25%">Squadra</th>
+                                        <th></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-player let-expanded="expanded">
+                                    <tr>
+                                        <td>
+                                            <button type="button" pButton pRipple [pRowToggler]="player" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                        </td>
+                                        <td><span class="p-column-title">Name</span>{{ player.firstName }}</td>
+                                        <td><span class="p-column-title">Cognome</span>{{ player.lastName }}</td>
+                                        <td><span class="p-column-title">Nazionalità</span>{{ player.nationality }}</td>
+                                        <td><span class="p-column-title">Data di nascita</span>{{ player.birthday }}</td>
+                                        <td><span class="p-column-title">Squadra</span>{{ player.teamName }}</td>
+                                        <td class="flex justify-content-end">
+                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            &nbsp;
+                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="rowexpansion" let-player>
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="p-3" style="width: 100%;">
+                                                <p-table [value]="[player]" responsiveLayout="stack">
+                                                    <ng-template pTemplate="header">
+                                                        <tr>
+                                                            <th style="width:25%">Numero maglia</th>
+                                                            <th style="width:25%">Posizione</th>
+                                                            <th style="width:25%">Piede</th>
+                                                            <th style="width:25%">Altezza</th>
+                                                            <th style="width:25%">Peso</th>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="body">
+                                                        <tr>
+                                                            <td><span class="p-column-title">Numero maglia</span>{{ player.jerseyNumber }}</td>
+                                                            <td><span class="p-column-title">Posizione</span>{{ player.position }}</td>
+                                                            <td><span class="p-column-title">Piede</span>{{ player.foot }}</td>
+                                                            <td><span class="p-column-title">Altezza</span>{{ player.height }}</td>
+                                                            <td><span class="p-column-title">Peso</span>{{ player.weight }}</td>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="emptymessage">
+                                                        <tr>
+                                                            <td colspan="7">Non ci sono informazioni aggiuntive.</td>
+                                                        </tr>
+                                                    </ng-template>
+                                                </p-table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </ng-container>
+                    </p-fieldset>
+                </div>
+
+                <div class="col-12 md:col-12 lg:col-6">
+                    <p-fieldset>
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center text-primary">
+                                <span class="pi pi-user mr-2"></span>
+                                <span class="font-bold text-lg">Allenatori</span>
+                            </div>
+                        </ng-template>
+                        <ng-container>
+                            <p-table [value]="managers" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                                [loading]="loading" responsiveLayout="stack"
+                                currentPageReportTemplate="Da {first} a {last} di {totalRecords} record"
+                                [rowsPerPageOptions]="[5, 10, 20]">
+                                <ng-template pTemplate="caption">
+                                    <div class="flex align-items-center justify-content-end">
+                                        <p-button icon="pi pi-plus"></p-button>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th style="width:25%">Nome</th>
+                                        <th style="width:25%">Cognome</th>
+                                        <th style="width:25%">Nazionalità</th>
+                                        <th style="width:25%">Data di nascita</th>
+                                        <th style="width:25%">Squadra</th>
+                                        <th></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-manager>
+                                    <tr>
+                                        <td><span class="p-column-title">Nome</span>{{ manager.firstName }}</td>
+                                        <td><span class="p-column-title">Cognome</span>{{ manager.lastName }}</td>
+                                        <td><span class="p-column-title">Nazionalità</span>{{ manager.nationality }}</td>
+                                        <td><span class="p-column-title">Data di nascita</span>{{ manager.birthday }}</td>
+                                        <td><span class="p-column-title">Squadra</span>{{ manager.teamName }}</td>
+                                        <td class="flex justify-content-end">
+                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            &nbsp;
+                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </ng-container>
+                    </p-fieldset>
+                </div>
+
+                <div class="col-12 md:col-12 lg:col-12">
+                    <p-fieldset>
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center text-primary">
+                                <span class="pi pi-user mr-2"></span>
+                                <span class="font-bold text-lg">Partite-Reti</span>
+                            </div>
+                        </ng-template>
+                        <ng-container>
+                            <p-table [value]="matches" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                                [loading]="loading" dataKey="id" responsiveLayout="stack"
+                                currentPageReportTemplate="Da {first} a {last} di {totalRecords} record"
+                                [rowsPerPageOptions]="[5, 10, 20]">
+                                <ng-template pTemplate="caption">
+                                    <div class="flex align-items-center justify-content-end">
+                                        <p-button icon="pi pi-plus"></p-button>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th></th>
+                                        <th>Stagione</th>
+                                        <th>Data</th>
+                                        <th>Spettatori</th>
+                                        <th>Risultato</th>
+                                        <th>Numero rigori</th>
+                                        <th>Squadra di casa</th>
+                                        <th>Squadra ospite</th>
+                                        <th>Stadio</th>
+                                        <th></th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-match let-expanded="expanded">
+                                    <tr>
+                                        <td>
+                                            <button type="button" pButton pRipple [pRowToggler]="match" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                        </td>
+                                        <td><span class="p-column-title">Stagione</span>{{ match.season }}</td>
+                                        <td><span class="p-column-title">Data</span>{{ match.datetime }}</td>
+                                        <td><span class="p-column-title">Spettatori</span>{{ match.attendance }}</td>
+                                        <td><span class="p-column-title">Risultato</span>{{ match.homeTeamScore + " - " + match.awayTeamScore }}</td>
+                                        <td><span class="p-column-title">Numero rigori</span>{{ match.penalityShootOut }}</td>
+                                        <td><span class="p-column-title">Squadra di casa</span>{{ match.homeTeamName }}</td>
+                                        <td><span class="p-column-title">Squadra ospite</span>{{ match.awayTeamName }}</td>
+                                        <td><span class="p-column-title">Stadio</span>{{ match.stadiumName }}</td>
+                                        <td class="flex justify-content-end">
+                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            &nbsp;
+                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="rowexpansion" let-match>
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="p-3" style="width: 100%;">
+                                                <p-table [value]="match.goals" dataKey="id" responsiveLayout="stack">
+                                                    <ng-template pTemplate="header">
+                                                        <tr>
+                                                            <th style="width:25%">Minuto rete</th>
+                                                            <th style="width:25%">Descrizione</th>
+                                                            <th style="width:25%">Marcatore</th>
+                                                            <th style="width:25%">Assist</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="body" let-goal>
+                                                        <tr>
+                                                            <td><span class="p-column-title">Minuto</span>{{ goal.minute }}</td>
+                                                            <td><span class="p-column-title">Descrizione</span>{{ goal.description }}</td>
+                                                            <td><span class="p-column-title">Marcatore</span>{{ goal.playerFullName }}</td>
+                                                            <td><span class="p-column-title">Assist</span>{{ goal.assistFullName }}</td>
+                                                            <td><button  pButton type="button" icon="pi pi-pencil"></button></td>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="emptymessage">
+                                                        <tr>
+                                                            <td colspan="10">Non sono presenti reti in questa partita.</td>
+                                                        </tr>
+                                                    </ng-template>
+                                                </p-table>
+                                            </div>
                                         </td>
                                     </tr>
                                 </ng-template>

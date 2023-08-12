@@ -10,7 +10,8 @@ export interface PlayerViewDTO {
     height: number,
     weight: number,
     foot: string,
-    teamId: string
+    teamId: string,
+    teamName: string
 
 }
 

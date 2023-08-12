@@ -1,3 +1,5 @@
+import { GoalViewDTO } from "./goal.model"
+
 export interface MatchViewDTO {
 
     id: string,
@@ -8,8 +10,12 @@ export interface MatchViewDTO {
     awayTeamScore: number,
     penalityShootOut: number,
     homeTeam: string,
+    homeTeamName: string,
     awayTeam: string,
+    awayTeamName: string,
     stadiumId: string
+    stadiumName: string,
+    goals: GoalViewDTO[]
 
 }
 

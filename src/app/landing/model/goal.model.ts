@@ -4,7 +4,9 @@ export interface GoalViewDTO {
     minute: number,
     description: string,
     playerId: string,
+    playerFullName: string,
     assist: string,
+    assistFullName: string,
     matchId: string
 
 }
