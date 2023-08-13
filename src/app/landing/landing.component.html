@@ -65,7 +65,7 @@
                     <span class="text-600 text-2xl font-medium">Stadi, squadre, giocatori, ...</span>
                 </div>
 
-                <div class="col-12 md:col-12 lg:col-6">
+                <div class="col-12 md:col-12 lg:col-12">
                     <p-fieldset>
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
@@ -80,7 +80,7 @@
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
-                                        <p-button icon="pi pi-plus"></p-button>
+                                        <p-button (click)="showStadiumDialog(null)" icon="pi pi-plus"></p-button>
                                     </div>
                                 </ng-template>
                                 <ng-template pTemplate="header">
@@ -99,9 +99,9 @@
                                         <td><span class="p-column-title">Paese</span>{{ stadium.country }}</td>
                                         <td><span class="p-column-title">Capienza</span>{{ stadium.capacity }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            <button  pButton type="button" (click)="showStadiumDialog(stadium)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                            <button  pButton type="button" (click)="deleteStadium(stadium)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -110,7 +110,7 @@
                     </p-fieldset>
                 </div>
 
-                <div class="col-12 md:col-12 lg:col-6">
+                <div class="col-12 md:col-12 lg:col-12">
                     <p-fieldset>
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
@@ -153,7 +153,7 @@
                     </p-fieldset>
                 </div>
 
-                <div class="col-12 md:col-12 lg:col-6">
+                <div class="col-12 md:col-12 lg:col-12">
                     <p-fieldset>
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
@@ -237,7 +237,7 @@
                     </p-fieldset>
                 </div>
 
-                <div class="col-12 md:col-12 lg:col-6">
+                <div class="col-12 md:col-12 lg:col-12">
                     <p-fieldset>
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
@@ -341,6 +341,11 @@
                                         <td colspan="10">
                                             <div class="p-3" style="width: 100%;">
                                                 <p-table [value]="match.goals" dataKey="id" responsiveLayout="stack">
+                                                    <ng-template pTemplate="caption">
+                                                        <div class="flex align-items-center justify-content-end">
+                                                            <p-button icon="pi pi-plus"></p-button>
+                                                        </div>
+                                                    </ng-template>
                                                     <ng-template pTemplate="header">
                                                         <tr>
                                                             <th style="width:25%">Minuto rete</th>
@@ -559,3 +564,23 @@
         </div>
     </div>
 </div>
+
+<p-dialog [(visible)]="stadiumOpenModal" [style]="{width: '50vw'}" header="Dettagli Stadio" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-stadium-modal [stadiumTarget]="stadium" (stadiumResponse)="handleStadium($event)"
+            (errorStadiumForm)="checkErrorStadiumForm($event)"></app-stadium-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('stadium')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitStadium()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '45%'}" [baseZIndex]="10000" [closable]="false" acceptLabel="Si"
+    rejectButtonStyleClass="p-button-text" ></p-confirmDialog>

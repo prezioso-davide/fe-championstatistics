@@ -1,0 +1,42 @@
+<form [formGroup]="stadiumForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="stadiumName">Nome</label>
+                <input type="text" pInputText id="stadiumName" formControlName="stadiumName" autocomplete="off" />
+                <p-message *ngIf="stadiumForm.controls.stadiumName.errors?.required && stadiumForm.controls.stadiumName.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="city">Città</label>
+                <input type="text" pInputText id="city" formControlName="city" autocomplete="off"/>
+                <p-message *ngIf="stadiumForm.controls.city.errors?.required && stadiumForm.controls.city.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="country">Paese</label>
+                <input type="text" pInputText id="country" formControlName="country" autocomplete="off" />
+                <p-message *ngIf="stadiumForm.controls.country.errors?.required && stadiumForm.controls.country.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="capacity">Capienza</label>
+                <input type="text" pInputText id="capacity" formControlName="capacity" autocomplete="off"/>
+                <p-message *ngIf="stadiumForm.controls.capacity.errors?.required && stadiumForm.controls.capacity.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="latitude">Latitudine</label>
+                <p-inputNumber formControlName="latitude" [useGrouping]="false" mode="decimal" pTooltip="Digita la virgola dopo la prima o la seconda cifra."
+                    tooltipPosition="bottom" maxlength="7" [minFractionDigits]="4" [maxFractionDigits]="4" (onInput)="onInputLatitude($event)">
+                </p-inputNumber>
+                <p-message *ngIf="stadiumForm.get('latitude')?.errors?.required && stadiumForm.get('latitude')?.dirty" severity="error" 
+                text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="longitude">Longitudine</label>
+                <p-inputNumber formControlName="longitude" [useGrouping]="false" mode="decimal" pTooltip="Digita la virgola dopo la prima o la seconda cifra."
+                    tooltipPosition="bottom" maxlength="7" [minFractionDigits]="4" [maxFractionDigits]="4" (onInput)="onInputLongitude($event)">
+                </p-inputNumber>
+                <p-message *ngIf="stadiumForm.get('longitude')?.errors?.required && stadiumForm.get('longitude')?.dirty" severity="error" 
+                text="Campo obbligatorio"></p-message>
+            </div>
+        </div>
+    </div>
+</form>

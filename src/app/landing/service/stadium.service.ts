@@ -20,19 +20,19 @@ export class StadiumService {
         return this._http.get<StadiumViewDTO[]>(this.url + "allByCountry/" + country);
     }
 
-    public getSpecificStadium(id: number) {
+    public getSpecificStadium(id: string) {
         return this._http.get(this.url + id);
     }
 
-    public createStadium(dto: StadiumCreationDTO, id: number) {
+    public createStadium(dto: StadiumCreationDTO) {
         return this._http.post(this.url + "create", dto);
     }
 
-    public updateStadium(dto: StadiumUpdateDTO, id: number) {
+    public updateStadium(dto: StadiumUpdateDTO, id: string) {
         return this._http.put(this.url + "update/"+ id, dto);
     }
 
-    public removeStadium(id: number) {
+    public removeStadium(id: string) {
         return this._http.delete(this.url + "delete/"+ id);
     }
 
