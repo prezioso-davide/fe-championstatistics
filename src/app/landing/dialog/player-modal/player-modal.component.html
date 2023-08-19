@@ -1,0 +1,79 @@
+<form [formGroup]="playerForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="firstName">Nome</label>
+                <input type="text" pInputText id="firstName" formControlName="firstName" autocomplete="off" />
+            </div>
+            <div class="field col-6">
+                <label for="lastName">Cognome</label>
+                <input type="text" pInputText id="lastName" formControlName="lastName" autocomplete="off" />
+                <p-message *ngIf="playerForm.controls.lastName.errors?.required && playerForm.controls.lastName.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="nationality">Nazionalità</label>
+                <input type="text" pInputText id="nationality" formControlName="nationality" autocomplete="off" />
+                <p-message *ngIf="playerForm.controls.nationality.errors?.required && playerForm.controls.nationality.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="birthday">Data di Nascita</label>
+                <p-calendar formControlName="birthday" dateFormat="dd/mm/yy" dataType="string" [showIcon]="true" [touchUI]="true"
+                    showClear="true" appendTo="body"></p-calendar>
+                <p-message *ngIf="playerForm.controls.birthday.errors?.required && playerForm.controls.birthday.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="jerseyNumber">Numero Maglia</label>
+                <p-inputNumber formControlName="jerseyNumber" [useGrouping]="false" mode="decimal"
+                    (onInput)="onInputJersey($event)">
+                </p-inputNumber>
+                <p-message *ngIf="playerForm.get('jerseyNumber')?.errors?.required && playerForm.get('jerseyNumber')?.dirty" severity="error" 
+                text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="position">Posizione</label>
+                <input type="text" pInputText id="position" formControlName="position" autocomplete="off" />
+                <p-message *ngIf="playerForm.controls.position.errors?.required && playerForm.controls.position.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="height">Altezza</label>
+                <p-inputNumber formControlName="height" [useGrouping]="false" mode="decimal" pTooltip="Digita la virgola dopo la prima o la seconda cifra."
+                    tooltipPosition="bottom" maxlength="4" [minFractionDigits]="2" [maxFractionDigits]="2" (onInput)="onInputHeight($event)">
+                </p-inputNumber>
+                <p-message *ngIf="playerForm.get('height')?.errors?.required && playerForm.get('height')?.dirty" severity="error" 
+                text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="weight">Peso</label>
+                <p-inputNumber formControlName="weight" [useGrouping]="false" mode="decimal"
+                    (onInput)="onInputWeight($event)">
+                </p-inputNumber>
+                <p-message *ngIf="playerForm.get('weight')?.errors?.required && playerForm.get('weight')?.dirty" severity="error" 
+                text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="foot">Piede</label>
+                <p-dropdown [options]="footTypes" formControlName="foot"
+                    appendTo="body" [showClear]="true" placeholder="Seleziona un'opzione">
+                    <ng-template let-foot pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ foot }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="playerForm.controls.teamId.errors?.required && playerForm.controls.teamId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="teamId">Squadra</label>
+                <p-dropdown [options]="allTeams" formControlName="teamId" optionLabel="teamName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="teamName" [showClear]="true" placeholder="Seleziona una squadra">
+                    <ng-template let-team pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ team.teamName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="playerForm.controls.teamId.errors?.required && playerForm.controls.teamId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+        </div>
+    </div>
+</form>

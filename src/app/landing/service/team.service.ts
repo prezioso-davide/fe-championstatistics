@@ -20,23 +20,23 @@ export class TeamService {
         return this._http.get<TeamViewDTO[]>(this.url + "allByCountry/" + country);
     }
 
-    public getAllTeamsByStadiumId(stadiumId: number) {
+    public getAllTeamsByStadiumId(stadiumId: string) {
         return this._http.get<TeamViewDTO[]>(this.url + "allByStadiumId/" + stadiumId);
     }
 
-    public getSpecificTeam(id: number) {
+    public getSpecificTeam(id: string) {
         return this._http.get(this.url + id);
     }
 
-    public createTeam(dto: TeamCreationDTO, id: number) {
+    public createTeam(dto: TeamCreationDTO) {
         return this._http.post(this.url + "create", dto);
     }
 
-    public updateTeam(dto: TeamUpdateDTO, id: number) {
+    public updateTeam(dto: TeamUpdateDTO, id: string) {
         return this._http.put(this.url + "update/"+ id, dto);
     }
 
-    public removeTeam(id: number) {
+    public removeTeam(id: string) {
         return this._http.delete(this.url + "delete/"+ id);
     }
 

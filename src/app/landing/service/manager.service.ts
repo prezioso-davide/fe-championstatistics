@@ -24,19 +24,19 @@ export class ManagerService {
         return this._http.get<ManagerViewDTO[]>(this.url + "allByTeamId/" + teamId);
     }
 
-    public getSpecificManager(id: number) {
+    public getSpecificManager(id: string) {
         return this._http.get(this.url + id);
     }
 
-    public createManager(dto: ManagerCreationDTO, id: number) {
+    public createManager(dto: ManagerCreationDTO) {
         return this._http.post(this.url + "create", dto);
     }
 
-    public updateManager(dto: ManagerUpdateDTO, id: number) {
+    public updateManager(dto: ManagerUpdateDTO, id: string) {
         return this._http.put(this.url + "update/"+ id, dto);
     }
 
-    public removeManager(id: number) {
+    public removeManager(id: string) {
         return this._http.delete(this.url + "delete/"+ id);
     }
 

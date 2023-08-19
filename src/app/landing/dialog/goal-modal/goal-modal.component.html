@@ -1,0 +1,45 @@
+<form [formGroup]="goalForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="minute">Minuto</label>
+                <input type="text" pInputText id="minute" formControlName="minute" autocomplete="off" />
+                <p-message *ngIf="goalForm.controls.minute.errors?.required && goalForm.controls.minute.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="description">Descrizione</label>
+                <input type="text" pInputText id="description" formControlName="description" autocomplete="off" />
+                <p-message *ngIf="goalForm.controls.description.errors?.required && goalForm.controls.description.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="playerId">Marcatore</label>
+                <p-dropdown [options]="allPlayers" formControlName="playerId" [optionLabel]="formatPlayerLabel" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="lastName" [showClear]="true" placeholder="Seleziona un giocatore">
+                    <ng-template let-player pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div *ngIf="!player.firstName">{{ player.lastName }}</div>
+                            <div *ngIf="player.firstName">{{ player.firstName  + ' ' + player.lastName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="goalForm.controls.playerId.errors?.required && goalForm.controls.playerId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="assist">Assist</label>
+                <p-dropdown [options]="allPlayers" formControlName="assist" [optionLabel]="formatPlayerLabel" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="lastName" [showClear]="true" placeholder="Seleziona un giocatore">
+                    <ng-template let-assist pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div *ngIf="!assist.firstName">{{ assist.lastName }}</div>
+                            <div *ngIf="assist.firstName">{{ assist.firstName  + ' ' + assist.lastName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="field col-6 hidden">
+                <label for="matchId">Partita</label>
+                <input type="text" pInputText id="matchId" formControlName="matchId" autocomplete="off" [disabled]="true" />
+            </div>
+        </div>
+    </div>
+</form>

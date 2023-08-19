@@ -1,0 +1,39 @@
+<form [formGroup]="managerForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="firstName">Nome</label>
+                <input type="text" pInputText id="firstName" formControlName="firstName" autocomplete="off" />
+                <p-message *ngIf="managerForm.controls.firstName.errors?.required && managerForm.controls.firstName.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="lastName">Cognome</label>
+                <input type="text" pInputText id="lastName" formControlName="lastName" autocomplete="off" />
+                <p-message *ngIf="managerForm.controls.lastName.errors?.required && managerForm.controls.lastName.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="nationality">Nazionalità</label>
+                <input type="text" pInputText id="nationality" formControlName="nationality" autocomplete="off" />
+                <p-message *ngIf="managerForm.controls.nationality.errors?.required && managerForm.controls.nationality.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="birthday">Data di Nascita</label>
+                <p-calendar formControlName="birthday" dateFormat="dd/mm/yy" dataType="string" [showIcon]="true" [touchUI]="true"
+                    showClear="true" appendTo="body"></p-calendar>
+                <p-message *ngIf="managerForm.controls.birthday.errors?.required && managerForm.controls.birthday.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="teamId">Squadra</label>
+                <p-dropdown [options]="allTeams" formControlName="teamId" optionLabel="teamName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="teamName" [showClear]="true" placeholder="Seleziona una squadra">
+                    <ng-template let-team pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ team.teamName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="managerForm.controls.teamId.errors?.required && managerForm.controls.teamId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+        </div>
+    </div>
+</form>

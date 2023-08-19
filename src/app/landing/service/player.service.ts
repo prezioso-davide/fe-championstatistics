@@ -24,19 +24,19 @@ export class PlayerService{
         return this._http.get<PlayerViewDTO[]>(this.url + "allByTeamId/" + teamId);
     }
 
-    public getSpecificPlayer(id: number) {
+    public getSpecificPlayer(id: string) {
         return this._http.get(this.url + id);
     }
 
-    public createPlayer(dto: PlayerCreationDTO, id: number) {
+    public createPlayer(dto: PlayerCreationDTO) {
         return this._http.post(this.url + "create", dto);
     }
 
-    public updatePlayer(dto: PlayerUpdateDTO, id: number) {
+    public updatePlayer(dto: PlayerUpdateDTO, id: string) {
         return this._http.put(this.url + "update/"+ id, dto);
     }
 
-    public removePlayer(id: number) {
+    public removePlayer(id: string) {
         return this._http.delete(this.url + "delete/"+ id);
     }
 

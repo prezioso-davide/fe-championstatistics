@@ -83,7 +83,12 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StadiumModalComponent } from './stadium/stadium-modal/stadium-modal.component';
+import { StadiumModalComponent } from './dialog/stadium-modal/stadium-modal.component';
+import { TeamModalComponent } from './dialog/team-modal/team-modal.component';
+import { ManagerModalComponent } from './dialog/manager-modal/manager-modal.component';
+import { PlayerModalComponent } from './dialog/player-modal/player-modal.component';
+import { MatchModalComponent } from './dialog/match-modal/match-modal.component';
+import { GoalModalComponent } from './dialog/goal-modal/goal-modal.component';
 
 @NgModule({
     imports: [
@@ -172,6 +177,6 @@ import { StadiumModalComponent } from './stadium/stadium-modal/stadium-modal.com
         HttpClientModule,
         BrowserAnimationsModule
     ],
-    declarations: [LandingComponent, StadiumModalComponent]
+    declarations: [LandingComponent, StadiumModalComponent, TeamModalComponent, ManagerModalComponent, PlayerModalComponent, MatchModalComponent, GoalModalComponent]
 })
 export class LandingModule { }

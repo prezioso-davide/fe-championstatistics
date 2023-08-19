@@ -1,0 +1,28 @@
+<form [formGroup]="teamForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="teamName">Nome</label>
+                <input type="text" pInputText id="teamName" formControlName="teamName" autocomplete="off" />
+                <p-message *ngIf="teamForm.controls.teamName.errors?.required && teamForm.controls.teamName.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="country">Paese</label>
+                <input type="text" pInputText id="country" formControlName="country" autocomplete="off" />
+                <p-message *ngIf="teamForm.controls.country.errors?.required && teamForm.controls.country.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="stadiumId">Stadio</label>
+                <p-dropdown [options]="allStadiums" formControlName="stadiumId" optionLabel="stadiumName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="stadiumName" [showClear]="true" placeholder="Seleziona uno stadio">
+                    <ng-template let-stadium pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ stadium.stadiumName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="teamForm.controls.stadiumId.errors?.required && teamForm.controls.stadiumId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+        </div>
+    </div>
+</form>

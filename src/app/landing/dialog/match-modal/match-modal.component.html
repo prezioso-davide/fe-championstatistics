@@ -1,0 +1,73 @@
+<form [formGroup]="matchForm">
+    <div class="card" style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #c0c0c0 0%, #0E1E5B 100%);">
+        <div class="formgrid grid ">
+            <div class="field col-6">
+                <label for="season">Stagione</label>
+                <input type="text" pInputText id="season" formControlName="season" autocomplete="off" />
+                <p-message *ngIf="matchForm.controls.season.errors?.required && matchForm.controls.season.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="datetime">Data Incontro</label>
+                <p-calendar formControlName="datetime" dateFormat="dd/mm/yy" dataType="string" [showIcon]="true" [touchUI]="true"
+                    showClear="true" appendTo="body"></p-calendar>
+                <p-message *ngIf="matchForm.controls.datetime.errors?.required && matchForm.controls.datetime.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="attendance">Spettatori</label>
+                <input type="text" pInputText id="attendance" formControlName="attendance" autocomplete="off" />
+                <p-message *ngIf="matchForm.controls.attendance.errors?.required && matchForm.controls.attendance.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="homeTeamScore">Punteggio Squadra di Casa</label>
+                <input type="text" pInputText id="homeTeamScore" formControlName="homeTeamScore" autocomplete="off" />
+                <p-message *ngIf="matchForm.controls.homeTeamScore.errors?.required && matchForm.controls.homeTeamScore.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="awayTeamScore">Punteggio Squadra Ospite</label>
+                <input type="text" pInputText id="awayTeamScore" formControlName="awayTeamScore" autocomplete="off" />
+                <p-message *ngIf="matchForm.controls.awayTeamScore.errors?.required && matchForm.controls.awayTeamScore.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="penalityShootOut">Numero Rigori</label>
+                <input type="text" pInputText id="penalityShootOut" formControlName="penalityShootOut" autocomplete="off" />
+                <p-message *ngIf="matchForm.controls.penalityShootOut.errors?.required && matchForm.controls.penalityShootOut.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="homeTeam">Squadra di Casa</label>
+                <p-dropdown [options]="allTeams" formControlName="homeTeam" optionLabel="teamName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="teamName" [showClear]="true" placeholder="Seleziona una squadra">
+                    <ng-template let-hteam pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ hteam.teamName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="matchForm.controls.homeTeam.errors?.required && matchForm.controls.homeTeam.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="awayTeam">Squadra Ospite</label>
+                <p-dropdown [options]="allTeams" formControlName="awayTeam" optionLabel="teamName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="teamName" [showClear]="true" placeholder="Seleziona una squadra">
+                    <ng-template let-ateam pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ ateam.teamName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="matchForm.controls.awayTeam.errors?.required && matchForm.controls.awayTeam.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+            <div class="field col-6">
+                <label for="stadiumId">Stadio</label>
+                <p-dropdown [options]="allStadiums" formControlName="stadiumId" optionLabel="stadiumName" optionValue="id"
+                    appendTo="body" [filter]="true" filterBy="stadiumName" [showClear]="true" placeholder="Seleziona uno stadio">
+                    <ng-template let-stadium pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ stadium.stadiumName }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <p-message *ngIf="matchForm.controls.stadiumId.errors?.required && matchForm.controls.stadiumId.dirty" severity="error" text="Campo obbligatorio"></p-message>
+            </div>
+        </div>
+    </div>
+</form>

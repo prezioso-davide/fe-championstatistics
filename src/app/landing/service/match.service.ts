@@ -32,19 +32,19 @@ export class MatchService{
         return this._http.get<MatchViewDTO[]>(this.url + "allByStadiumId/" + stadiumId);
     }
 
-    public getSpecificMatch(id: number) {
+    public getSpecificMatch(id: string) {
         return this._http.get(this.url + id);
     }
 
-    public createMatch(dto: MatchCreationDTO, id: number) {
+    public createMatch(dto: MatchCreationDTO) {
         return this._http.post(this.url + "create", dto);
     }
 
-    public updateMatch(dto: MatchUpdateDTO, id: number) {
+    public updateMatch(dto: MatchUpdateDTO, id: string) {
         return this._http.put(this.url + "update/"+ id, dto);
     }
 
-    public removeMatch(id: number) {
+    public removeMatch(id: string) {
         return this._http.delete(this.url + "delete/"+ id);
     }
 

@@ -6,7 +6,7 @@
             <a class="flex align-items-center" href="#">
                 <img src="assets/landing/champions.png" alt="Champions League Logo" height="50" class="mr-2"><span
                     class="text-900 font-medium text-2xl line-height-3 mr-8" style="width: 150px;">Uefa
-                    Stastistics</span>
+                    Statistics</span>
             </a>
             <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden"
                 leaveToClass="hidden" [hideOnOutsideClick]="true">
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset>
+                    <p-fieldset [toggleable]="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -99,9 +99,9 @@
                                         <td><span class="p-column-title">Paese</span>{{ stadium.country }}</td>
                                         <td><span class="p-column-title">Capienza</span>{{ stadium.capacity }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" (click)="showStadiumDialog(stadium)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showStadiumDialog(stadium)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" (click)="deleteStadium(stadium)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteStadium(stadium)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset>
+                    <p-fieldset [toggleable]="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -125,7 +125,7 @@
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
-                                        <p-button icon="pi pi-plus"></p-button>
+                                        <p-button (click)="showTeamDialog(null)" icon="pi pi-plus"></p-button>
                                     </div>
                                 </ng-template>
                                 <ng-template pTemplate="header">
@@ -142,9 +142,9 @@
                                         <td><span class="p-column-title">Paese</span>{{ team.country }}</td>
                                         <td><span class="p-column-title">Stadio</span>{{ team.stadiumName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showTeamDialog(team)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteTeam(team)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset>
+                    <p-fieldset [toggleable]="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -168,7 +168,7 @@
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
-                                        <p-button icon="pi pi-plus"></p-button>
+                                        <p-button (click)="showPlayerDialog(null)" icon="pi pi-plus"></p-button>
                                     </div>
                                 </ng-template>
                                 <ng-template pTemplate="header">
@@ -193,9 +193,9 @@
                                         <td><span class="p-column-title">Data di nascita</span>{{ player.birthday }}</td>
                                         <td><span class="p-column-title">Squadra</span>{{ player.teamName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showPlayerDialog(player)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deletePlayer(player)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -238,7 +238,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset>
+                    <p-fieldset [toggleable]="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -252,7 +252,7 @@
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
-                                        <p-button icon="pi pi-plus"></p-button>
+                                        <p-button (click)="showManagerDialog(null)" icon="pi pi-plus"></p-button>
                                     </div>
                                 </ng-template>
                                 <ng-template pTemplate="header">
@@ -273,9 +273,9 @@
                                         <td><span class="p-column-title">Data di nascita</span>{{ manager.birthday }}</td>
                                         <td><span class="p-column-title">Squadra</span>{{ manager.teamName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showManagerDialog(manager)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteManager(manager)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -285,7 +285,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset>
+                    <p-fieldset [toggleable]="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -299,7 +299,7 @@
                                 [rowsPerPageOptions]="[5, 10, 20]">
                                 <ng-template pTemplate="caption">
                                     <div class="flex align-items-center justify-content-end">
-                                        <p-button icon="pi pi-plus"></p-button>
+                                        <p-button (click)="showMatchDialog(null)" icon="pi pi-plus"></p-button>
                                     </div>
                                 </ng-template>
                                 <ng-template pTemplate="header">
@@ -319,7 +319,7 @@
                                 <ng-template pTemplate="body" let-match let-expanded="expanded">
                                     <tr>
                                         <td>
-                                            <button type="button" pButton pRipple [pRowToggler]="match" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                            <button type="button" pButton pRipple [pRowToggler]="match" (click)="selectedMatch(match)" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                                         </td>
                                         <td><span class="p-column-title">Stagione</span>{{ match.season }}</td>
                                         <td><span class="p-column-title">Data</span>{{ match.datetime }}</td>
@@ -330,9 +330,9 @@
                                         <td><span class="p-column-title">Squadra ospite</span>{{ match.awayTeamName }}</td>
                                         <td><span class="p-column-title">Stadio</span>{{ match.stadiumName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button  pButton type="button" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showMatchDialog(match)" icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button  pButton type="button" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteMatch(match)" icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -343,7 +343,7 @@
                                                 <p-table [value]="match.goals" dataKey="id" responsiveLayout="stack">
                                                     <ng-template pTemplate="caption">
                                                         <div class="flex align-items-center justify-content-end">
-                                                            <p-button icon="pi pi-plus"></p-button>
+                                                            <p-button *ngIf="!checkGoals(match)" (click)="showGoalDialog(null)" icon="pi pi-plus"></p-button>
                                                         </div>
                                                     </ng-template>
                                                     <ng-template pTemplate="header">
@@ -361,7 +361,7 @@
                                                             <td><span class="p-column-title">Descrizione</span>{{ goal.description }}</td>
                                                             <td><span class="p-column-title">Marcatore</span>{{ goal.playerFullName }}</td>
                                                             <td><span class="p-column-title">Assist</span>{{ goal.assistFullName }}</td>
-                                                            <td><button  pButton type="button" icon="pi pi-pencil"></button></td>
+                                                            <td><button pButton type="button" (click)="showGoalDialog(goal)" icon="pi pi-pencil"></button></td>
                                                         </tr>
                                                     </ng-template>
                                                     <ng-template pTemplate="emptymessage">
@@ -578,6 +578,108 @@
             (click)="hideDialog('stadium')"></button>
         <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
             (click)="submitStadium()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [(visible)]="teamOpenModal" [style]="{width: '50vw'}" header="Dettagli Squadra" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-team-modal 
+            [teamTarget]="team"
+            [allStadiums]="stadiums"
+            (teamResponse)="handleTeam($event)"
+            (errorTeamForm)="checkErrorTeamForm($event)"></app-team-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('team')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitTeam()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [(visible)]="playerOpenModal" [style]="{width: '50vw'}" header="Dettagli Giocatore" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-player-modal 
+            [playerTarget]="player"
+            [allTeams]="teams"
+            (playerResponse)="handlePlayer($event)"
+            (errorPlayerForm)="checkErrorPlayerForm($event)"></app-player-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('player')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitPlayer()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [(visible)]="managerOpenModal" [style]="{width: '50vw'}" header="Dettagli Allenatore" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-manager-modal 
+            [managerTarget]="manager" 
+            [allTeams]="teams"
+            (managerResponse)="handleManager($event)"
+            (errorManagerForm)="checkErrorManagerForm($event)"></app-manager-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('manager')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitManager()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [(visible)]="matchOpenModal" [style]="{width: '50vw'}" header="Dettagli Partita" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-match-modal 
+            [matchTarget]="match"
+            [allTeams]="teams"
+            [allStadiums]="stadiums"
+            (matchResponse)="handleMatch($event)"
+            (errorMatchForm)="checkErrorMatchForm($event)"></app-match-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('match')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitMatch()"></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [(visible)]="goalOpenModal" [style]="{width: '50vw'}" header="Dettagli Rete" [modal]="true"
+    styleClass="p-fluid" [closable]="false">
+
+    <ng-template pTemplate="body">
+        <app-goal-modal 
+            [goalTarget]="goal" 
+            [allPlayers]="players"
+            [matchTarget]="match"
+            (goalResponse)="handleGoal($event)"
+            (errorGoalForm)="checkErrorGoalForm($event)"></app-goal-modal>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Indietro" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog('goal')"></button>
+        <button pButton pRipple label="Conferma" icon="pi pi-check" class="p-button-text"
+            (click)="submitGoal()"></button>
     </ng-template>
 
 </p-dialog>
