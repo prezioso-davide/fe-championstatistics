@@ -89,6 +89,7 @@ import { ManagerModalComponent } from './dialog/manager-modal/manager-modal.comp
 import { PlayerModalComponent } from './dialog/player-modal/player-modal.component';
 import { MatchModalComponent } from './dialog/match-modal/match-modal.component';
 import { GoalModalComponent } from './dialog/goal-modal/goal-modal.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
     imports: [
@@ -177,6 +178,6 @@ import { GoalModalComponent } from './dialog/goal-modal/goal-modal.component';
         HttpClientModule,
         BrowserAnimationsModule
     ],
-    declarations: [LandingComponent, StadiumModalComponent, TeamModalComponent, ManagerModalComponent, PlayerModalComponent, MatchModalComponent, GoalModalComponent]
+    declarations: [LandingComponent, StadiumModalComponent, TeamModalComponent, ManagerModalComponent, PlayerModalComponent, MatchModalComponent, GoalModalComponent, MapComponent]
 })
 export class LandingModule { }

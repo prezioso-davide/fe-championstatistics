@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { StadiumService } from './service/stadium.service';
 import { StadiumCreationDTO, StadiumUpdateDTO, StadiumViewDTO } from './model/stadium.model';
-import { Subscription, forkJoin, switchMap, tap } from 'rxjs';
+import { Subscription, forkJoin, map, switchMap, tap } from 'rxjs';
 import { TeamService } from './service/team.service';
 import { TeamCreationDTO, TeamUpdateDTO, TeamViewDTO } from './model/team.model';
 import { ManagerCreationDTO, ManagerUpdateDTO, ManagerViewDTO } from './model/manager.model';
@@ -15,12 +15,21 @@ import { MatchService } from './service/match.service';
 import { GoalService } from './service/goal.service';
 import { FormGroup } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Data } from '../utilities/constant.data';
+import { MapComponent } from './map/map.component';
 
 @Component({
     selector: 'app-landing',
-    templateUrl: './landing.component.html'
+    templateUrl: './landing.component.html',
+    styles: [`#scroll-top {position: fixed; bottom: 20px; right: 20px; z-index: 9999}`]
 })
 export class LandingComponent implements OnInit, OnDestroy{
+
+    @ViewChild(MapComponent) mapComponent: MapComponent;
+
+    public countries: any[] = Data.COUNTRIES;
+    public previouslySelectedCountries: any[] = [];
+    public selectedCountries: any[];
 
     public stadiums: StadiumViewDTO[] = [];
     public stadium: StadiumViewDTO;
@@ -122,6 +131,41 @@ export class LandingComponent implements OnInit, OnDestroy{
                 }
             })
         
+    }
+
+    public getInfo(event) {
+        console.log(event);
+
+        const selectedCountries = event.value.map(country => country.name);
+        const deselectedCountries = this.previouslySelectedCountries.filter(country => !selectedCountries.includes(country));
+
+        deselectedCountries.forEach(country => {
+            if (this.mapComponent) {
+                this.mapComponent.clearStadiumMarkers(country); 
+            }
+        });
+
+        this.previouslySelectedCountries = selectedCountries;
+
+        event.value.forEach(country => {
+            const name = country.name;
+
+            this._stadiumService.getAllStadiumsByCountry(name)
+                .subscribe({
+                    next: (data) => {
+                        if (this.mapComponent) {
+                            this.mapComponent.addStadiumMarkers(name, data); 
+                        }
+                    },
+                    error: (err) => {
+
+                    },
+                    complete: () => {
+
+                    }
+                });
+            
+        });
     }
 
     public showStadiumDialog(stadium: null | StadiumViewDTO) {
@@ -1040,8 +1084,6 @@ export class LandingComponent implements OnInit, OnDestroy{
         
         this.isEdit = false;
     }
-
-    
 
     private _clearStadiumData() {
         this.stadiumOpenModal = false;

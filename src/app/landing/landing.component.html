@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset [toggleable]="true">
+                    <p-fieldset [toggleable]="true" collapsed="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset [toggleable]="true">
+                    <p-fieldset [toggleable]="true" collapsed="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -238,7 +238,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset [toggleable]="true">
+                    <p-fieldset [toggleable]="true" collapsed="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -285,7 +285,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12">
-                    <p-fieldset [toggleable]="true">
+                    <p-fieldset [toggleable]="true" collapsed="true">
                         <ng-template pTemplate="header">
                             <div class="flex align-items-center text-primary">
                                 <span class="pi pi-user mr-2"></span>
@@ -383,44 +383,40 @@
 
         <div id="map" class="py-4 px-4 lg:px-8 mx-0 my-6 lg:mx-8">
             <div class="text-center">
-                <h2 class="text-900 font-normal mb-2">Powerful Everywhere</h2>
-                <span class="text-600 text-2xl">Amet consectetur adipiscing elit...</span>
+                <h2 class="text-900 font-normal mb-2">Mappa</h2>
+                <span class="text-600 text-2xl">Visualizza le informazioni su una mappa</span>
             </div>
 
-            <div class="grid mt-8 pb-2 md:pb-8">
-                <div class="flex justify-content-center col-12 lg:col-6 bg-purple-100 p-0 flex-order-1 lg:flex-order-0"
-                    style="border-radius:8px;">
-                    <!-- <img src="assets/demo/images/landing/mockup.svg" class="w-11" alt="mockup mobile"> -->
-                </div>
+            <br>
 
-                <div class="col-12 lg:col-6 my-auto flex flex-column lg:align-items-end text-center lg:text-right">
-                    <div class="flex align-items-center justify-content-center bg-purple-200 align-self-center lg:align-self-end"
-                        style="width:4.2rem; height:4.2rem; border-radius: 10px;">
-                        <i class="pi pi-fw pi-mobile text-5xl text-purple-700"></i>
-                    </div>
-                    <h2 class="line-height-1 text-900 text-4xl font-normal">Congue Quisque Egestas</h2>
-                    <span class="text-700 text-2xl line-height-3 ml-0 md:ml-2" style="max-width:650px;">Lectus arcu
-                        bibendum at varius vel pharetra vel turpis nunc. Eget aliquet nibh praesent tristique magna sit
-                        amet purus gravida. Sit amet mattis vulputate enim nulla aliquet.</span>
-                </div>
-            </div>
+            <div class="grid">
+                <div class="col-12 md:col-4 lg:col-3">
+                    <p-multiSelect  [options]="countries" [(ngModel)]="selectedCountries" optionLabel="displayName" 
+                        defaultLabel="Seleziona un paese" resetFilterOnHide="true" (onChange)="getInfo($event)">
+                        <ng-template let-value pTemplate="selectedItems">
+                            <div class="flex align-items-center gap-2" *ngFor="let selected of selectedCountries">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + (selected.code ? selected.code.toLowerCase() : '')" style="width: 18px"/>
+                                <div>{{ selected.displayName }}</div>
+                            </div>
+                            <div *ngIf="!selectedCountries || selectedCountries.length === 0">Seleziona i paesi </div>
+                        </ng-template>
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + (country.code ? country.code.toLowerCase() : '')" style="width: 18px"/>
+                                <div>{{ country.displayName }}</div>
+                            </div>
+                        </ng-template>
+                    </p-multiSelect>
 
-            <div class="grid my-8 pt-2 md:pt-8">
-                <div class="col-12 lg:col-6 my-auto flex flex-column text-center lg:text-left lg:align-items-start">
-                    <div class="flex align-items-center justify-content-center bg-yellow-200 align-self-center lg:align-self-start"
-                        style="width:4.2rem; height:4.2rem; border-radius:10px;">
-                        <i class="pi pi-fw pi-desktop text-5xl text-yellow-700"></i>
-                    </div>
-                    <h2 class="line-height-1 text-900 text-4xl font-normal">Celerisque Eu Ultrices</h2>
-                    <span class="text-700 text-2xl line-height-3 mr-0 md:mr-2" style="max-width:650px;">Adipiscing
-                        commodo elit at imperdiet dui. Viverra nibh cras pulvinar mattis nunc sed blandit libero.
-                        Suspendisse in est ante in. Mauris pharetra et ultrices neque ornare aenean euismod elementum
-                        nisi.</span>
-                </div>
+                    <br>
+                    <br>
 
-                <div class="flex justify-content-end flex-order-1 sm:flex-order-2 col-12 lg:col-6 bg-yellow-100 p-0"
-                    style="border-radius:8px;">
-                    <!-- <img src="assets/demo/images/landing/mockup-desktop.svg" class="w-11" alt="mockup"> -->
+                    <p-card>
+
+                    </p-card>
+                </div>
+                <div class="col-12 md:col-8 lg:col-9">
+                    <app-map [countriesTarget]="selectedCountries"></app-map>
                 </div>
             </div>
         </div>
@@ -686,3 +682,6 @@
 
 <p-confirmDialog [style]="{width: '45%'}" [baseZIndex]="10000" [closable]="false" acceptLabel="Si"
     rejectButtonStyleClass="p-button-text" ></p-confirmDialog>
+
+<p-button id="scroll-top" icon="pi pi-arrow-up" styleClass="p-button-rounded"
+    (click)="router.navigate(['/landing'], {fragment: 'home'})"></p-button>
