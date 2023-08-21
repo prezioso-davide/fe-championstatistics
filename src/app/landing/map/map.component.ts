@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
+import { TeamService } from '../service/team.service';
 
 @Component({
   selector: 'app-map',
@@ -16,7 +17,8 @@ export class MapComponent implements OnChanges, AfterViewInit {
   private countryMarkersMap: { [countryName: string]: L.Marker[] } = {};
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _teamService: TeamService
   ) { }
 
   ngAfterViewInit(): void {
@@ -51,10 +53,19 @@ export class MapComponent implements OnChanges, AfterViewInit {
     const markers: L.Marker[] = [];
   
     stadiums.forEach(stadium => {
-      const marker = L.marker([stadium.latitude, stadium.longitude])
-        .bindPopup(stadium.stadiumName)
-        .addTo(this.map);
-      markers.push(marker);
+      const teamsData$ = this._teamService.getAllTeamsByStadiumId(stadium.id).subscribe({
+        next: (data) => {
+          const teamNames = data.map(team => team.teamName).join(', '); // Ottieni i nomi delle squadre e li unisci con una virgola
+          const popupContent = `${stadium.stadiumName}<br> Squ: ${teamNames}`; 
+
+          const marker = L.marker([stadium.latitude, stadium.longitude])
+            .bindPopup(popupContent)
+            .addTo(this.map);
+          markers.push(marker);
+        }
+      })
+
+      
     });
   
     this.countryMarkersMap[countryName] = markers;

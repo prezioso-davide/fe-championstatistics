@@ -99,9 +99,11 @@
                                         <td><span class="p-column-title">Paese</span>{{ stadium.country }}</td>
                                         <td><span class="p-column-title">Capienza</span>{{ stadium.capacity }}</td>
                                         <td class="flex justify-content-end">
-                                            <button pButton type="button" (click)="showStadiumDialog(stadium)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showStadiumDialog(stadium)"
+                                                icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button pButton type="button" (click)="deleteStadium(stadium)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteStadium(stadium)"
+                                                icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -142,9 +144,11 @@
                                         <td><span class="p-column-title">Paese</span>{{ team.country }}</td>
                                         <td><span class="p-column-title">Stadio</span>{{ team.stadiumName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button pButton type="button" (click)="showTeamDialog(team)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showTeamDialog(team)"
+                                                icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button pButton type="button" (click)="deleteTeam(team)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteTeam(team)"
+                                                icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -185,17 +189,22 @@
                                 <ng-template pTemplate="body" let-player let-expanded="expanded">
                                     <tr>
                                         <td>
-                                            <button type="button" pButton pRipple [pRowToggler]="player" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                            <button type="button" pButton pRipple [pRowToggler]="player"
+                                                class="p-button-text p-button-rounded p-button-plain"
+                                                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                                         </td>
                                         <td><span class="p-column-title">Name</span>{{ player.firstName }}</td>
                                         <td><span class="p-column-title">Cognome</span>{{ player.lastName }}</td>
                                         <td><span class="p-column-title">Nazionalità</span>{{ player.nationality }}</td>
-                                        <td><span class="p-column-title">Data di nascita</span>{{ player.birthday }}</td>
+                                        <td><span class="p-column-title">Data di nascita</span>{{ player.birthday }}
+                                        </td>
                                         <td><span class="p-column-title">Squadra</span>{{ player.teamName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button pButton type="button" (click)="showPlayerDialog(player)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showPlayerDialog(player)"
+                                                icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button pButton type="button" (click)="deletePlayer(player)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deletePlayer(player)"
+                                                icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -215,7 +224,8 @@
                                                     </ng-template>
                                                     <ng-template pTemplate="body">
                                                         <tr>
-                                                            <td><span class="p-column-title">Numero maglia</span>{{ player.jerseyNumber }}</td>
+                                                            <td><span class="p-column-title">Numero maglia</span>{{ player.jerseyNumber }}
+                                                            </td>
                                                             <td><span class="p-column-title">Posizione</span>{{ player.position }}</td>
                                                             <td><span class="p-column-title">Piede</span>{{ player.foot }}</td>
                                                             <td><span class="p-column-title">Altezza</span>{{ player.height }}</td>
@@ -269,13 +279,17 @@
                                     <tr>
                                         <td><span class="p-column-title">Nome</span>{{ manager.firstName }}</td>
                                         <td><span class="p-column-title">Cognome</span>{{ manager.lastName }}</td>
-                                        <td><span class="p-column-title">Nazionalità</span>{{ manager.nationality }}</td>
-                                        <td><span class="p-column-title">Data di nascita</span>{{ manager.birthday }}</td>
+                                        <td><span class="p-column-title">Nazionalità</span>{{ manager.nationality }}
+                                        </td>
+                                        <td><span class="p-column-title">Data di nascita</span>{{ manager.birthday }}
+                                        </td>
                                         <td><span class="p-column-title">Squadra</span>{{ manager.teamName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button pButton type="button" (click)="showManagerDialog(manager)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showManagerDialog(manager)"
+                                                icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button pButton type="button" (click)="deleteManager(manager)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteManager(manager)"
+                                                icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -319,20 +333,31 @@
                                 <ng-template pTemplate="body" let-match let-expanded="expanded">
                                     <tr>
                                         <td>
-                                            <button type="button" pButton pRipple [pRowToggler]="match" (click)="selectedMatch(match)" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                                            <button type="button" pButton pRipple [pRowToggler]="match"
+                                                (click)="selectedMatch(match)"
+                                                class="p-button-text p-button-rounded p-button-plain"
+                                                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                                         </td>
                                         <td><span class="p-column-title">Stagione</span>{{ match.season }}</td>
                                         <td><span class="p-column-title">Data</span>{{ match.datetime }}</td>
                                         <td><span class="p-column-title">Spettatori</span>{{ match.attendance }}</td>
-                                        <td><span class="p-column-title">Risultato</span>{{ match.homeTeamScore + " - " + match.awayTeamScore }}</td>
-                                        <td><span class="p-column-title">Numero rigori</span>{{ match.penalityShootOut }}</td>
-                                        <td><span class="p-column-title">Squadra di casa</span>{{ match.homeTeamName }}</td>
-                                        <td><span class="p-column-title">Squadra ospite</span>{{ match.awayTeamName }}</td>
+                                        <td><span class="p-column-title">Risultato</span>{{ match.homeTeamScore + " - "
+                                            +
+                                            match.awayTeamScore }}</td>
+                                        <td><span class="p-column-title">Numero rigori</span>{{ match.penalityShootOut
+                                            }}
+                                        </td>
+                                        <td><span class="p-column-title">Squadra di casa</span>{{ match.homeTeamName }}
+                                        </td>
+                                        <td><span class="p-column-title">Squadra ospite</span>{{ match.awayTeamName }}
+                                        </td>
                                         <td><span class="p-column-title">Stadio</span>{{ match.stadiumName }}</td>
                                         <td class="flex justify-content-end">
-                                            <button pButton type="button" (click)="showMatchDialog(match)" icon="pi pi-pencil"></button>
+                                            <button pButton type="button" (click)="showMatchDialog(match)"
+                                                icon="pi pi-pencil"></button>
                                             &nbsp;
-                                            <button pButton type="button" (click)="deleteMatch(match)" icon="pi pi-trash"></button>
+                                            <button pButton type="button" (click)="deleteMatch(match)"
+                                                icon="pi pi-trash"></button>
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -343,7 +368,9 @@
                                                 <p-table [value]="match.goals" dataKey="id" responsiveLayout="stack">
                                                     <ng-template pTemplate="caption">
                                                         <div class="flex align-items-center justify-content-end">
-                                                            <p-button *ngIf="!checkGoals(match)" (click)="showGoalDialog(null)" icon="pi pi-plus"></p-button>
+                                                            <p-button *ngIf="!checkGoals(match)"
+                                                                (click)="showGoalDialog(null)"
+                                                                icon="pi pi-plus"></p-button>
                                                         </div>
                                                     </ng-template>
                                                     <ng-template pTemplate="header">
@@ -361,7 +388,8 @@
                                                             <td><span class="p-column-title">Descrizione</span>{{ goal.description }}</td>
                                                             <td><span class="p-column-title">Marcatore</span>{{ goal.playerFullName }}</td>
                                                             <td><span class="p-column-title">Assist</span>{{ goal.assistFullName }}</td>
-                                                            <td><button pButton type="button" (click)="showGoalDialog(goal)" icon="pi pi-pencil"></button></td>
+                                                            <td><button pButton type="button" (click)="showGoalDialog(goal)"
+                                                                    icon="pi pi-pencil"></button></td>
                                                         </tr>
                                                     </ng-template>
                                                     <ng-template pTemplate="emptymessage">
@@ -391,18 +419,22 @@
 
             <div class="grid">
                 <div class="col-12 md:col-4 lg:col-3">
-                    <p-multiSelect  [options]="countries" [(ngModel)]="selectedCountries" optionLabel="displayName" 
+                    <p-multiSelect [options]="countries" [(ngModel)]="selectedCountries" optionLabel="displayName"
                         defaultLabel="Seleziona un paese" resetFilterOnHide="true" (onChange)="getInfo($event)">
                         <ng-template let-value pTemplate="selectedItems">
                             <div class="flex align-items-center gap-2" *ngFor="let selected of selectedCountries">
-                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + (selected.code ? selected.code.toLowerCase() : '')" style="width: 18px"/>
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                    [class]="'flag flag-' + (selected.code ? selected.code.toLowerCase() : '')"
+                                    style="width: 18px" />
                                 <div>{{ selected.displayName }}</div>
                             </div>
                             <div *ngIf="!selectedCountries || selectedCountries.length === 0">Seleziona i paesi </div>
                         </ng-template>
                         <ng-template let-country pTemplate="item">
                             <div class="flex align-items-center gap-2">
-                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + (country.code ? country.code.toLowerCase() : '')" style="width: 18px"/>
+                                <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                    [class]="'flag flag-' + (country.code ? country.code.toLowerCase() : '')"
+                                    style="width: 18px" />
                                 <div>{{ country.displayName }}</div>
                             </div>
                         </ng-template>
@@ -412,7 +444,41 @@
                     <br>
 
                     <p-card>
-
+                        <p-table [value]="stadiumsWithTeams" sortField="nation" sortMode="single" groupRowsBy="nation"
+                            rowGroupMode="subheader" [scrollable]="true" [paginator]="true" [rows]="5"
+                            responsiveLayout="stack">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Stadio</th>
+                                    <th>Città</th>
+                                    <th>Capacità</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="groupheader" let-item>
+                                <tr pRowGroupHeader>
+                                    <td colspan="5">
+                                        <img [alt]="item.nation"
+                                            src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                            [class]="'flag flag-' + (item.code ? item.code.toLowerCase() : '')"
+                                            width="32" style="vertical-align: middle" />
+                                        <span class="font-bold ml-2">{{item.nation}}</span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="groupfooter" let-item>
+                                <tr>
+                                    <td colspan="5" class="text-right font-bold pr-6">Tot. Stadi:
+                                        {{calculateStadiumTotal(item.nation)}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item>
+                                <tr>
+                                    <td><span class="p-column-title">Stadio</span>{{ item.stadium.stadiumName }}</td>
+                                    <td><span class="p-column-title">Città</span>{{ item.stadium.city }}</td>
+                                    <td><span class="p-column-title">Capacità</span>{{ item.stadium.capacity }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
                     </p-card>
                 </div>
                 <div class="col-12 md:col-8 lg:col-9">
@@ -582,10 +648,7 @@
     styleClass="p-fluid" [closable]="false">
 
     <ng-template pTemplate="body">
-        <app-team-modal 
-            [teamTarget]="team"
-            [allStadiums]="stadiums"
-            (teamResponse)="handleTeam($event)"
+        <app-team-modal [teamTarget]="team" [allStadiums]="stadiums" (teamResponse)="handleTeam($event)"
             (errorTeamForm)="checkErrorTeamForm($event)"></app-team-modal>
     </ng-template>
 
@@ -602,10 +665,7 @@
     styleClass="p-fluid" [closable]="false">
 
     <ng-template pTemplate="body">
-        <app-player-modal 
-            [playerTarget]="player"
-            [allTeams]="teams"
-            (playerResponse)="handlePlayer($event)"
+        <app-player-modal [playerTarget]="player" [allTeams]="teams" (playerResponse)="handlePlayer($event)"
             (errorPlayerForm)="checkErrorPlayerForm($event)"></app-player-modal>
     </ng-template>
 
@@ -622,10 +682,7 @@
     styleClass="p-fluid" [closable]="false">
 
     <ng-template pTemplate="body">
-        <app-manager-modal 
-            [managerTarget]="manager" 
-            [allTeams]="teams"
-            (managerResponse)="handleManager($event)"
+        <app-manager-modal [managerTarget]="manager" [allTeams]="teams" (managerResponse)="handleManager($event)"
             (errorManagerForm)="checkErrorManagerForm($event)"></app-manager-modal>
     </ng-template>
 
@@ -642,12 +699,8 @@
     styleClass="p-fluid" [closable]="false">
 
     <ng-template pTemplate="body">
-        <app-match-modal 
-            [matchTarget]="match"
-            [allTeams]="teams"
-            [allStadiums]="stadiums"
-            (matchResponse)="handleMatch($event)"
-            (errorMatchForm)="checkErrorMatchForm($event)"></app-match-modal>
+        <app-match-modal [matchTarget]="match" [allTeams]="teams" [allStadiums]="stadiums"
+            (matchResponse)="handleMatch($event)" (errorMatchForm)="checkErrorMatchForm($event)"></app-match-modal>
     </ng-template>
 
     <ng-template pTemplate="footer">
@@ -663,12 +716,8 @@
     styleClass="p-fluid" [closable]="false">
 
     <ng-template pTemplate="body">
-        <app-goal-modal 
-            [goalTarget]="goal" 
-            [allPlayers]="players"
-            [matchTarget]="match"
-            (goalResponse)="handleGoal($event)"
-            (errorGoalForm)="checkErrorGoalForm($event)"></app-goal-modal>
+        <app-goal-modal [goalTarget]="goal" [allPlayers]="players" [matchTarget]="match"
+            (goalResponse)="handleGoal($event)" (errorGoalForm)="checkErrorGoalForm($event)"></app-goal-modal>
     </ng-template>
 
     <ng-template pTemplate="footer">
@@ -681,7 +730,7 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '45%'}" [baseZIndex]="10000" [closable]="false" acceptLabel="Si"
-    rejectButtonStyleClass="p-button-text" ></p-confirmDialog>
+    rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 
 <p-button id="scroll-top" icon="pi pi-arrow-up" styleClass="p-button-rounded"
     (click)="router.navigate(['/landing'], {fragment: 'home'})"></p-button>
