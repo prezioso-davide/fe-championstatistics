@@ -32,6 +32,18 @@ export class LandingComponent implements OnInit, OnDestroy{
     public selectedCountries: any[];
     public stadiumsWithTeams: any[] = [];
 
+    public chartData: any = {
+        labels: [],
+        datasets: []
+    };
+    public options: any;
+    documentStyle: any;
+    textColor: any;
+    textColorSecondary: any;
+    surfaceBorder: any;
+    isReady: boolean = false;
+    public selectedTeam: TeamViewDTO;
+
     public stadiums: StadiumViewDTO[] = [];
     public stadium: StadiumViewDTO;
     public stadiumId: string;
@@ -100,6 +112,11 @@ export class LandingComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this._getAllData();
+
+        this.documentStyle = getComputedStyle(document.documentElement);
+        this.textColor = this.documentStyle.getPropertyValue('--text-color');
+        this.textColorSecondary = this.documentStyle.getPropertyValue('--text-color-secondary');
+        this.surfaceBorder = this.documentStyle.getPropertyValue('--surface-border');
     }
 
     private _getAllData() {
@@ -227,6 +244,86 @@ export class LandingComponent implements OnInit, OnDestroy{
         }
 
         return total;
+    }
+
+    public viewNumberMatch(event) {
+        console.log(event.value);
+
+        this.options = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: this.textColor
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: this.textColorSecondary
+                    },
+                    grid: {
+                        color: this.surfaceBorder,
+                        drawBorder: false
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: this.textColorSecondary
+                    },
+                    grid: {
+                        color: this.surfaceBorder,
+                        drawBorder: false
+                    }
+                }
+            }
+        }
+
+        const seasons = ['2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023'];
+
+        const teamMatches = this.matches.filter(match => match.homeTeamName === event.value.teamName || match.awayTeamName === event.value.teamName);
+
+        const matchesBySeason = {};
+
+        seasons.forEach(season => {
+            matchesBySeason[season] = teamMatches.filter(match => match.season === season);
+        });
+
+        const lengthsBySeason = seasons.map(season => matchesBySeason[season].length);
+
+        this.chartData = {
+            labels: seasons,
+            datasets: [
+                {
+                    label: "Numero Partite Stagionali",
+                    data: lengthsBySeason,
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(72, 209, 204, 0.2)' 
+                    ],
+                    borderColor: [
+                        'rgb(255, 159, 64)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(255, 99, 132)', 
+                        'rgb(255, 205, 86)',
+                        'rgb(72, 209, 204)'
+                    ],
+                    borderWidth: 1
+                }
+            ]
+
+        };
+
+        this.isReady = true;
+        console.log(this.chartData);
     }
 
     public showStadiumDialog(stadium: null | StadiumViewDTO) {
