@@ -1,27 +1,55 @@
-# Sakai
+# Frontend del Progetto UEFA Statistics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+Questo documento fornisce un'overview delle funzionalità del frontend e spiega come avviare, configurare e utilizzare il frontend per visualizzare e gestire i dati della competizione UEFA Champions League dal 2016 al 2023.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Descrizione
 
-## Code scaffolding
+Il frontend del progetto UEFA Statistics è stato sviluppato utilizzando Angular e PrimeNG per fornire un'interfaccia utente intuitiva e interattiva. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Il frontend offre tre sezioni principali:
 
-## Build
+- Sezione Tabelle: Qui gli utenti possono visualizzare e gestire i dati relativi ai giocatori, allenatori, squadre e altre collection. È possibile eseguire operazioni di creazione, lettura, aggiornamento e cancellazione (CRUD) direttamente dalle tabelle.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Sezione Mappa: In questa sezione, gli utenti possono esplorare una mappa interattiva, selezionando le nazioni da una multiselect sarà possibile visualizzare gli stadi e le squadre associate a ciascuna nazione. Questa sezione offre una prospettiva geografica delle squadre e dei loro luoghi di gioco.
 
-## Running unit tests
+- Sezione Grafici: Qui gli utenti possono visualizzare un grafico, previa selezione di una squadra, che rappresenta il numero di partite giocate da una squadra nelle diverse stagioni dal 2016 al 2023. Questo permette di tracciare il rendimento della squadra nel corso degli anni.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Prerequisiti
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Prima di iniziare, assicurati di avere installato:
 
-## Further help
+Node.js 18.12.1
+npm 9.4.1
+Angular 16
+Visual Studio 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Installazione
+
+1) Clona il repository del backend dalla repository GitLab.
+```
+git clone https://gitlab.com/d.prezioso3/fe_uefastatistics.git
+```
+
+2) Installa le dipendenze
+```
+npm install
+```
+*In caso dovessero persistere degli errori, si consiglia di chiudere e riaprire l'IDE.
+
+
+## Utilizzo
+
+1) Avvia l'applicazione Angular
+```
+ng serve -o
+```
+
+2) Naviga l'applicazione utilizzando un browser all'indirizzo http://localhost:4200.
+
+
+## Contatti
+
+In caso di domande o problemi, è possibile contattare il team (Davide Prezioso) inviando un'email a d.prezioso3studenti.unisa.it.

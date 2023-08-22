@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "sakai-ng": {
+        "uefastatistics-ng": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/sakai-ng",
+                        "outputPath": "dist/uefastatistics-ng",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": [
@@ -32,13 +32,18 @@
                         ],
                         "styles": [
                             "node_modules/leaflet/dist/leaflet.css",
-                            "node_modules/chart.js/dist/chart.js",
                             "src/styles.scss",
                             "src/flags.css"
                         ],
                         "scripts": [
                             "node_modules/prismjs/prism.js",
                             "node_modules/prismjs/components/prism-typescript.js"
+                        ],
+                        "allowedCommonJsDependencies": [
+                            "@fullcalendar/daygrid",
+                            "@fullcalendar/timegrid",
+                            "@fullcalendar/interaction",
+                            "chart.js"
                         ]
                     },
                     "configurations": {
@@ -77,14 +82,14 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "sakai-ng:build"
+                        "browserTarget": "uefastatistics-ng:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "sakai-ng:build:production"
+                            "browserTarget": "uefastatistics-ng:build:production"
                         },
                         "development": {
-                            "browserTarget": "sakai-ng:build:development"
+                            "browserTarget": "uefastatistics-ng:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -92,7 +97,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "sakai-ng:build"
+                        "browserTarget": "uefastatistics-ng:build"
                     }
                 },
                 "test": {
