@@ -16,7 +16,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
   countriesLayer: L.GeoJSON;
   private countryMarkersMap: { [countryName: string]: L.Marker[] } = {};
   private myIcon = L.icon({
-    iconUrl: 'location-pin.png',
+    iconUrl: 'assets/landing/location-pin.png',
     iconSize: [40, 40],
   });
 
