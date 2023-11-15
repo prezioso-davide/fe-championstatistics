@@ -4,9 +4,10 @@
         <div id="topbar"
             class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
             <a class="flex align-items-center" href="#">
-                <img src="assets/landing/champions.png" alt="Champions League Logo" height="50" class="mr-2"><span
-                    class="text-900 font-medium text-2xl line-height-3 mr-8" style="width: 150px;">Uefa
-                    Statistics</span>
+                <img src="assets/landing/champions.png" alt="Champions League Logo" height="50" class="mr-2"/>
+                    <span class="text-900 font-medium text-2xl line-height-3 mr-8" style="width: 150px;">
+                        Uefa Statistics
+                    </span>
             </a>
             <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden"
                 leaveToClass="hidden" [hideOnOutsideClick]="true">
@@ -497,7 +498,9 @@
                 <div class="field">
                     <div class="col-6">
                         <p-dropdown [options]="teams" [(ngModel)]="selectedTeam" placeholder="Seleziona una squadra"
-                            (onChange)="viewNumberMatch($event)" optionLabel="teamName"></p-dropdown>
+                            (onChange)="viewNumberMatch($event)" optionLabel="teamName" [filter]="true" 
+                            filterBy="teamName">
+                        </p-dropdown>
                     </div>
                 </div>
                 <p-card class="col-12" *ngIf="isReady">

@@ -15,6 +15,10 @@ export class MapComponent implements OnChanges, AfterViewInit {
   map: L.Map;
   countriesLayer: L.GeoJSON;
   private countryMarkersMap: { [countryName: string]: L.Marker[] } = {};
+  private myIcon = L.icon({
+    iconUrl: 'location-pin.png',
+    iconSize: [40, 40],
+  });
 
   constructor(
     private _http: HttpClient,
@@ -58,7 +62,7 @@ export class MapComponent implements OnChanges, AfterViewInit {
           const teamNames = data.map(team => team.teamName).join(', '); // Ottieni i nomi delle squadre e li unisci con una virgola
           const popupContent = `${stadium.stadiumName}<br> Squ: ${teamNames}`; 
 
-          const marker = L.marker([stadium.latitude, stadium.longitude])
+          const marker = L.marker([stadium.latitude, stadium.longitude], {icon: this.myIcon})
             .bindPopup(popupContent)
             .addTo(this.map);
           markers.push(marker);

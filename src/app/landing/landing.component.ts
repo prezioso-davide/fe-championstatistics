@@ -27,6 +27,8 @@ export class LandingComponent implements OnInit, OnDestroy{
 
     @ViewChild(MapComponent) mapComponent: MapComponent;
 
+    private countriesWithMarkers: string[] = [];
+
     public countries: any[] = Data.COUNTRIES;
     public previouslySelectedCountries: any[] = [];
     public selectedCountries: any[];
@@ -153,81 +155,90 @@ export class LandingComponent implements OnInit, OnDestroy{
     }
 
     public getInfo(event) {
-        console.log(event);
 
         const selectedCountries = event.value.map(country => country.name);
-        const deselectedCountries = this.previouslySelectedCountries.filter(country => !selectedCountries.includes(country));
+        const deselectedCountries: string = this.previouslySelectedCountries.filter(country => !selectedCountries.includes(country)).join(', ');;
+        console.log(deselectedCountries);
 
-        deselectedCountries.forEach(country => {
-            if (this.mapComponent) {
-                this.mapComponent.clearStadiumMarkers(country); 
+        if (this.mapComponent) {
+            this.mapComponent.clearStadiumMarkers(deselectedCountries);
+            if(this.countriesWithMarkers.includes(deselectedCountries)){
+                this.countriesWithMarkers.splice(this.countriesWithMarkers.indexOf(deselectedCountries),1);
             }
+        }
 
-            this.stadiumsWithTeams = this.stadiumsWithTeams.filter(item => item.stadium.country !== country);
-        });
+        this.stadiumsWithTeams = this.stadiumsWithTeams.filter(item => item.stadium.country !== deselectedCountries);
 
         this.previouslySelectedCountries = selectedCountries;
+
+        console.log("outside foreach " + this.countriesWithMarkers);
 
         event.value.forEach(country => {
             const name = country.name;
             const code = country.code;
 
-            const stadiumsByCountry$ = this._stadiumService.getAllStadiumsByCountry(name);
+            if (!this.countriesWithMarkers.includes(name)) {
+
+                const stadiumsByCountry$ = this._stadiumService.getAllStadiumsByCountry(name);
             
-            const result$ = stadiumsByCountry$
-                .pipe(
-                    tap((data) => {
-                        if (this.mapComponent) {
-                            this.mapComponent.addStadiumMarkers(name, data); 
-                        }
-                    }),
-                    switchMap(stadiums => {
-                        const teamRequests = stadiums.map(stadium => this._teamService.getAllTeamsByStadiumId(stadium.id));
-                        return forkJoin(teamRequests).pipe(
-                            map(teamArrays => {
-                                const stadiumTeams = stadiums.map((stadium, index) => ({
-                                    nation: name,
-                                    code: code,
-                                    stadium: stadium,
-                                    teams: teamArrays[index]
-                                }));
-                                return stadiumTeams;
-                            })
-                        );
-                    }),
-                )
-
-            result$.subscribe({
-                    next: (data) => {
-                        data.forEach(stadiumTeams => {
-                            if (stadiumTeams.teams.length > 0) {
-                                const existingStadiumIndex = this.stadiumsWithTeams.findIndex(existingItem =>
-                                    existingItem.stadium.id === stadiumTeams.stadium.id
-                                );
-        
-                                if (existingStadiumIndex !== -1) {
-                                    stadiumTeams.teams.forEach(team => {
-                                        if (!this.stadiumsWithTeams[existingStadiumIndex].teams.some(existingTeam => existingTeam.id === team.id)) {
-                                            this.stadiumsWithTeams[existingStadiumIndex].teams.push(team);
-                                        }
-                                    });
-                                } else {
-                                    this.stadiumsWithTeams = [...this.stadiumsWithTeams, stadiumTeams];
-                                }
+                const result$ = stadiumsByCountry$
+                    .pipe(
+                        tap((data) => {
+                            if (this.mapComponent) {
+                                this.mapComponent.addStadiumMarkers(name, data); 
                             }
-                        });
+                        }),
+                        switchMap(stadiums => {
+                            const teamRequests = stadiums.map(stadium => this._teamService.getAllTeamsByStadiumId(stadium.id));
+                            return forkJoin(teamRequests).pipe(
+                                map(teamArrays => {
+                                    const stadiumTeams = stadiums.map((stadium, index) => ({
+                                        nation: name,
+                                        code: code,
+                                        stadium: stadium,
+                                        teams: teamArrays[index]
+                                    }));
+                                    return stadiumTeams;
+                                })
+                            );
+                        }),
+                    )
 
-                        console.log(this.stadiumsWithTeams);
+                result$.subscribe({
+                        next: (data) => {
+                            data.forEach(stadiumTeams => {
+                                if (stadiumTeams.teams.length > 0) {
+                                    const existingStadiumIndex = this.stadiumsWithTeams.findIndex(existingItem =>
+                                        existingItem.stadium.id === stadiumTeams.stadium.id
+                                    );
+            
+                                    if (existingStadiumIndex !== -1) {
+                                        stadiumTeams.teams.forEach(team => {
+                                            if (!this.stadiumsWithTeams[existingStadiumIndex].teams.some(existingTeam => existingTeam.id === team.id)) {
+                                                this.stadiumsWithTeams[existingStadiumIndex].teams.push(team);
+                                            }
+                                        });
+                                    } else {
+                                        this.stadiumsWithTeams = [...this.stadiumsWithTeams, stadiumTeams];
+                                    }
+                                }
+                            });
 
-                        this.cdr.detectChanges();
-                    },
-                    error: (err) => {
+                            this.countriesWithMarkers.push(name);
 
-                    },
-                    complete: () => {
+                            console.log("push inside foreach " + this.countriesWithMarkers);
 
-                    }
-                });
+                            this.cdr.detectChanges();
+                        },
+                        error: (err) => {
+
+                        },
+                        complete: () => {
+
+                        }
+                    });
+
+            }
             
         });
     }
