@@ -1,11 +1,11 @@
-# Frontend del Progetto UEFA Statistics
+# Frontend del Progetto Champions Statistics
 
-Questo documento fornisce un'overview delle funzionalità del frontend e spiega come avviare, configurare e utilizzare il frontend per visualizzare e gestire i dati della competizione UEFA Champions League dal 2016 al 2023.
+Questo documento fornisce un'overview delle funzionalità del frontend e spiega come avviare, configurare e utilizzare il frontend per visualizzare e gestire i dati della competizione UEFA Champions League dal 2016 al 2022.
 
 
 ## Descrizione
 
-Il frontend del progetto UEFA Statistics è stato sviluppato utilizzando Angular e PrimeNG per fornire un'interfaccia utente intuitiva e interattiva. 
+Il frontend del progetto Champions Statistics è stato sviluppato utilizzando Angular e PrimeNG per fornire un'interfaccia utente intuitiva e interattiva. 
 
 Il frontend offre tre sezioni principali:
 
@@ -30,7 +30,7 @@ Visual Studio
 
 1) Clona il repository del backend dalla repository GitLab.
 ```
-git clone https://gitlab.com/d.prezioso3/fe_uefastatistics.git
+git clone https://github.com/prezioso-davide/fe-championstatistics.git
 ```
 
 2) Installa le dipendenze
@@ -50,6 +50,6 @@ ng serve -o
 2) Naviga l'applicazione utilizzando un browser all'indirizzo http://localhost:4200.
 
 
-## Contatti
+## Info Utili
 
-In caso di domande o problemi, è possibile contattare il team (Davide Prezioso) inviando un'email a d.prezioso3studenti.unisa.it.
+Questo progetto universitario è stato realizzato per lo svolgimento dell'esame di Basi di Dati 2, il quale richiedeva l'utilizzo di un database di tipo non relazionale. A tale scopo è stato utilizzato MongoDB.
